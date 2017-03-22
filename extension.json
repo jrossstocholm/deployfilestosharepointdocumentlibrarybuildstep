@@ -1,9 +1,9 @@
 {
   "manifestVersion": 1,
-  "id": "upload-sp-app",
+  "id": "upload-sp-files-app",
   "name": "SharePoint Files Uploader",
-  "version": "0.2.1",
-  "publisher": "projectumaps",
+  "version": "0.1.2",
+  "publisher": "projectumapsvsts",
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
@@ -17,11 +17,11 @@
     "Build and release"
   ],
   "icons": {
-    "default": "UploadSpApp/icon.png"
+    "default": "UploadFilesToSPDocLib/icon.png"
   },
   "files": [
     {
-      "path": "UploadSpApp"
+      "path": "UploadFilesToSPDocLib"
     }
   ],
   "contributions": [
@@ -32,7 +32,7 @@
         "ms.vss-distributed-task.tasks"
       ],
       "properties": {
-        "name": "UploadSpApp"
+        "name": "UploadFilesToSPDocLib"
       }
     }
   ]
