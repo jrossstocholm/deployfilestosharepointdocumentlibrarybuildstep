@@ -54,3 +54,5 @@ Follow steps below to publish VSTS extension with the build task to VSTS marketp
 ```
 
 When you run the above command, you will be prompted for a Personal Access Token to authenticate to the Marketplace. For more information about obtaining a Personal Access Token, see [Publish from the command line](https://www.visualstudio.com/en-us/integrate/extensions/publish/command-line). 
+
+Check the following article for detailed description of publishing process of VSTS extension to marketplace and specific tenant: https://www.visualstudio.com/en-us/docs/integrate/extensions/publish/overview 
