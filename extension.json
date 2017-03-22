@@ -1,0 +1,39 @@
+{
+  "manifestVersion": 1,
+  "id": "upload-sp-app",
+  "name": "SharePoint Files Uploader",
+  "version": "0.2.1",
+  "publisher": "projectumaps",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "scopes": [
+    "vso.build"
+  ],
+  "description": "Defines a release task to upload files to SharePoint document library.",
+  "categories": [
+    "Build and release"
+  ],
+  "icons": {
+    "default": "UploadSpApp/icon.png"
+  },
+  "files": [
+    {
+      "path": "UploadSpApp"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "upload-sp-task",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "UploadSpApp"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+# Deploy To SharePoint VSTS Build Step #
+
+### What is this repository for? ###
+
+When developing SharePoint add-ins you typically need to deploy the add-in to a SharePoint online tenant upon successful build. This is 
+a Visual Studio Team Services (VSTS) Custom build step enabling just that.
+
+Simply configure the build step with details about the SharePoint tenant and your add-in will be deployed automatically
+
+### Contribution guidelines ###
+
+* Never commit without comments
+
+### Who do I talk to? ###
+
+* Repo owner is "Projectum Aps" - world leader of Project Server/Online implementations
+
+### Prerequisites ###
+
+In order to either make changes or deploy the extension, your environment must meet the following requriements:
+
+* [NodeJS runtime](https://nodejs.org/en/)
+* [TFX CLI](https://github.com/Microsoft/tfs-cli)
+
+### Deploying the build task to specific VSTS ###
+
+Below are the steps to deploy the build task to specific VSTS passing marketplace:
+
+1. Achieve [VSTS personal access token](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview#create-personal-access-tokens-to-authenticate-access) from target VSTS tenant.
+2. Open command line and navigate to extension folder (where extension.json is located).
+3. Execute the following commands (replace `{tenant}` and `{access_token}` with your values):
+
+```
+    tfx login --service-url https://{tenant}.visualstudio.com/DefaultCollection --token {access_token}
+    tfx build tasks upload --task-path ./UploadFilesToSPDocLib
+```
+
+Run the following command to delete already deployed task:
+
+```
+    tfx build tasks delete --task-id 78e95edd-975c-46cd-bfcc-4f4b22c1f792
+```
+
+### Publishing VSTS extension with the build task to VSTS marketplace ###
+
+Follow steps below to publish VSTS extension with the build task to VSTS marketplace:
+
+1. Create your [VSTS publisher](https://www.visualstudio.com/en-us/docs/integrate/extensions/develop/add-build-task#step-4-publish-your-extension).
+2. Open command line and navigate to extension folder (where extension.json is located).
+3. Execute the following command to package your extension into a .vsix file (it will appear in Builds folder) and publish it to VSTS marketplace:
+
+```
+    tfx extension publish --publisher {your_publisher} --manifest-globs extension.json --output-path Builds
+```
+
+When you run the above command, you will be prompted for a Personal Access Token to authenticate to the Marketplace. For more information about obtaining a Personal Access Token, see [Publish from the command line](https://www.visualstudio.com/en-us/integrate/extensions/publish/command-line). 

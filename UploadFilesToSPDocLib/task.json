@@ -1,0 +1,80 @@
+{
+  "id": "78e95edd-975c-46cd-bfcc-4f4b22c1f792",
+  "name": "UploadFilesToSPDocLib",
+  "friendlyName": "Upload files to SharePoint lirary",
+  "description": "Uploads files to specified SharePoint document library.",
+  "author": "Projectum Aps",
+  "helpMarkDown": "Replace with markdown to show in help",
+  "category": "Deploy",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "0",
+    "Minor": "2",
+    "Patch": "1"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "UploadFilesToSPDocLib $(message)",
+  "groups": [
+    {
+        "name": "appCatalogGroup",
+        "displayName": "SharePoint Files Upload",
+        "isExpanded": true
+    }
+  ],
+  "inputs": [
+    {
+        "name": "spUrl",
+        "type": "string",
+        "label": "SharePoint website URL",
+        "defaultValue": "",
+        "required": true,
+        "groupName": "appCatalogGroup",
+        "helpMarkDown": "URL address of target SharePoint website."
+    },
+    {
+        "name": "docLibTitle",
+        "type": "string",
+        "label": "Document library name",
+        "defaultValue": "",
+        "required": true,
+        "groupName": "appCatalogGroup",
+        "helpMarkDown": "SharePoint document library title."
+    },
+    {
+        "name": "login",
+        "type": "string",
+        "label": "Login",
+        "defaultValue": "",
+        "required": true,
+        "groupName": "appCatalogGroup",
+        "helpMarkDown": ""
+    },
+    {
+        "name": "password",
+        "type": "string",
+        "label": "Password",
+        "defaultValue": "",
+        "required": true,
+        "groupName": "appCatalogGroup",
+        "helpMarkDown": ""
+    },
+    {
+        "name": "filesToUpload",
+        "type": "filePath",
+        "label": "Files to upload",
+        "defaultValue": "$(System.DefaultWorkingDirectory)",
+        "required": true,
+        "groupName": "appCatalogGroup",
+        "helpMarkDown": "Path to a folder or files to be uploaded. Masked input is supported."
+    }
+  ],
+  "execution": {
+    "PowerShell3": {
+        "target": "uploadFilesToSpApp.ps1"
+    }
+  }
+}
