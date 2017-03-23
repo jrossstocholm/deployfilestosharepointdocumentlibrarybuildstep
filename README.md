@@ -47,12 +47,14 @@ Follow steps below to publish VSTS extension with the build task to VSTS marketp
 
 1. Create your [VSTS publisher](https://www.visualstudio.com/en-us/docs/integrate/extensions/develop/add-build-task#step-4-publish-your-extension).
 2. Open command line and navigate to extension folder (where extension.json is located).
-3. Execute the following command to package your extension into a .vsix file (it will appear in Builds folder) and publish it to VSTS marketplace:
+3. Execute the following command to package your extension into a .vsix file (it will appear in Builds folder):
 
 ```
-    tfx extension publish --publisher {your_publisher} --manifest-globs extension.json --output-path Builds
+    tfx extension create --manifest-globs extension.json
 ```
+4. Upload your generated extension to [Marketplace Publishing Portal](http://aka.ms/vsmarketplace-manage)
+5. Right click your extension and select Share..., and enter your account information.
 
-When you run the above command, you will be prompted for a Personal Access Token to authenticate to the Marketplace. For more information about obtaining a Personal Access Token, see [Publish from the command line](https://www.visualstudio.com/en-us/integrate/extensions/publish/command-line). 
+Now that your extension is in the marketplace and shared, anyone who wants to use it will have to install it.
 
 Check the following article for detailed description of publishing process of VSTS extension to marketplace and specific tenant: https://www.visualstudio.com/en-us/docs/integrate/extensions/publish/overview 
