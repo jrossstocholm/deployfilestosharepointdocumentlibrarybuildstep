@@ -38,7 +38,7 @@ Below are the steps to deploy the build task to specific VSTS passing marketplac
 Run the following command to delete already deployed task:
 
 ```
-    tfx extension create --manifest-globs extension.json --rev-version --output-path ./Builds
+    tfx build tasks delete --task-id 78e95edd-975c-46cd-bfcc-4f4b22c1f792
 ```
 
 ### Publishing VSTS extension with the build task to VSTS marketplace ###
