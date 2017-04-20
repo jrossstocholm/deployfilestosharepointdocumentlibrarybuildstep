@@ -1,7 +1,7 @@
 {
   "id": "78e95edd-975c-46cd-bfcc-4f4b22c1f792",
   "name": "UploadFilesToSPDocLib",
-  "friendlyName": "Upload files to SharePoint lirary",
+  "friendlyName": "Upload files to SharePoint library",
   "description": "Uploads files to specified SharePoint document library.",
   "author": "Projectum Aps",
   "helpMarkDown": "Replace with markdown to show in help",
