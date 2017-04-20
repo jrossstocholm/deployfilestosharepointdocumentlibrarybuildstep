@@ -50,7 +50,7 @@ Follow steps below to publish VSTS extension with the build task to VSTS marketp
 3. Execute the following command to package your extension into a .vsix file (it will appear in Builds folder):
 
 ```
-    tfx extension create --manifest-globs extension.json
+    tfx extension create --manifest-globs extension.json --rev-version --output-path ./Builds
 ```
 4. Upload your generated extension to [Marketplace Publishing Portal](http://aka.ms/vsmarketplace-manage)
 5. Right click your extension and select Share..., and enter your account information.

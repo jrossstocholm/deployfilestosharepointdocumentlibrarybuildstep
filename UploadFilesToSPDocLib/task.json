@@ -17,7 +17,7 @@
     "Patch": "1"
   },
   "minimumAgentVersion": "1.95.0",
-  "instanceNameFormat": "UploadFilesToSPDocLib $(message)",
+  "instanceNameFormat": "Upload files to SharePoint library $(message)",
   "groups": [
     {
         "name": "appCatalogGroup",

@@ -4,3 +4,6 @@ When developing SharePoint add-ins you typically need to deploy the add-in to a 
 
 Simply configure the build step with details about the SharePoint tenant and the location of the .app-file in your build result and your add-in will be deployed automatically
 
+# Release Notes
+## 1.1.9 (20-Apr-2017)
+- Fixed "instanceName" for more friendly and descriptive text
