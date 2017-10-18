@@ -45,6 +45,15 @@
         "helpMarkDown": "SharePoint document library title."
     },
     {
+        "name": "folderPath",
+        "type": "string",
+        "label": "Folder path",
+        "defaultValue": "",
+        "required": false,
+        "groupName": "appCatalogGroup",
+        "helpMarkDown": "SharePoint document library folder path."
+    },
+    {
         "name": "login",
         "type": "string",
         "label": "Login",

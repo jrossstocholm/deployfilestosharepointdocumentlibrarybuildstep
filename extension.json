@@ -3,7 +3,7 @@
   "author": "Projectum Aps",
   "id": "upload-sp-files-app",
   "name": "SharePoint Files Uploader",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "publisher": "projectumapsvsts",
   "public": true,
   "content": {

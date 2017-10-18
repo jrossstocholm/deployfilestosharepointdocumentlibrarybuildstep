@@ -1,11 +1,9 @@
-[CmdletBinding()]
-param()
 
-Trace-VstsEnteringInvocation $MyInvocation
 try {
-    # get task properties
+	# get task properties
     $paramSpUrl = Get-VstsInput -Name spUrl -Require
 	$paramDocLibTitle = Get-VstsInput -Name docLibTitle -Require
+	$paramFolderPath = Get-VstsInput -Name folderPath -Require
 	$paramLogin = Get-VstsInput -Name login -Require
 	$paramPassword = Get-VstsInput -Name password -Require
 	$paramFiles = Get-VstsInput -Name filesToUpload -Require
@@ -13,6 +11,7 @@ try {
 	# log properties to task output
     Write-Host "Site URL: $paramSpUrl"
 	Write-Host "Document library: $paramDocLibTitle"
+	Write-Host "Folder: $paramFolderPath"
 	Write-Host "Login $paramLogin"
 
 	# load SharePoint CSOM assemblies
@@ -28,10 +27,21 @@ try {
 	$ctx = New-Object Microsoft.SharePoint.Client.ClientContext($paramSpUrl)
 	$ctx.Credentials = $creds
 
-	# load app catalog library and root folder
+	# load library and root folder
 	$targetLib = $ctx.Web.Lists.GetByTitle($paramDocLibTitle)
 	$ctx.Load($targetLib)
 	$ctx.Load($targetLib.RootFolder)
+	$ctx.ExecuteQuery()
+
+	if ($paramFolderPath) {
+		Write-Host "$($targetLib.RootFolder.ServerRelativeUrl)/$($paramFolderPath)"
+		$folder = $ctx.Web.GetFolderByServerRelativeUrl("$($targetLib.RootFolder.ServerRelativeUrl)/$($paramFolderPath)")
+	}
+	else {
+		$folder = $targetLib.RootFolder
+	}
+
+	$ctx.Load($folder)
 	$ctx.ExecuteQuery()
 
 	# if 'filesToUpload' is folder path - append all files mask
@@ -39,7 +49,6 @@ try {
 		$paramFiles = $paramFiles.TrimEnd('/')
 		$paramFiles += '/**/*.*'
 	}
-
 
 	$filesToUpload = Get-ChildItem -Path $paramFiles -Recurse
 
@@ -49,14 +58,14 @@ try {
 		Write-Host "Uploading '$file'..."
 
 		$fileStream = New-Object IO.FileStream($file.FullName,[System.IO.FileMode]::Open)
-		$fileURL = $targetLib.RootFolder.ServerRelativeUrl + "/" + $file.Name
+		$fileURL = $folder.ServerRelativeUrl + "/" + $file.Name
 
 		$fileCreationInfo = New-Object Microsoft.SharePoint.Client.FileCreationInformation
 		$fileCreationInfo.Overwrite = $true
 		$fileCreationInfo.ContentStream = $fileStream
 		$fileCreationInfo.URL = $fileURL
 
-		$uploadedFile = $targetLib.RootFolder.Files.Add($fileCreationInfo)
+		$uploadedFile = $folder.Files.Add($fileCreationInfo)
 		$uploadedFile.ListItemAllFields["Title"] = $file.Name;
 		$uploadedFile.ListItemAllFields.Update();
 		$ctx.ExecuteQuery();
