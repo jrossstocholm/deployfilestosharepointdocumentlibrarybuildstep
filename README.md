@@ -22,7 +22,7 @@ In order to either make changes or deploy the extension, your environment must m
 * [NodeJS runtime](https://nodejs.org/en/)
 * [TFX CLI](https://github.com/Microsoft/tfs-cli)
 
-### Deploying the build task to specific VSTS ###
+### Deploying the build task to specific VSTS. ###
 
 Below are the steps to deploy the build task to specific VSTS passing marketplace:
 
